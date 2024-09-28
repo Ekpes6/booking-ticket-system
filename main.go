@@ -13,6 +13,7 @@ var remainingTicket uint = 50
 // var bookings = make([]map[string]string, 0)
 var bookings = make([]UserData, 0)
 
+// creating a structure of user data in place of a map
 type UserData struct {
 	firstName       string
 	lastName        string
@@ -35,6 +36,7 @@ func main() {
 		if isValidName && isValidEmail && isValidTicketNumber {
 			//booking ticket function
 			bookTicket(userTickets, firstName, lastName, email)
+			sendTicket(userTickets, firstName, lastName, email)
 
 			//Print first names
 			firstNames := getFirstNames()
@@ -133,4 +135,11 @@ func bookTicket(userTickets uint, firstName string, lastName string, email strin
 	fmt.Printf("%v tickets remainingTicketing for %v\n", remainingTicket, conferenceName)
 	fmt.Println(bookings)
 
+}
+
+func sendTicket(userTickets uint, firstName string, lastName string, email string) {
+	var ticket = fmt.Sprintf("%v tickets for %v %v", userTickets, firstName, lastName)
+	fmt.Println("#################")
+	fmt.Printf("Sending ticket:\n %v \nto email address %v\n", ticket, email)
+	fmt.Println("#################")
 }
